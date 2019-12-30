@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/answer.dart';
+import './question.dart';
+import './question.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,27 +11,26 @@ class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
-  var questionIndex = 0;
-  
-   var questions = [
-      "You have choosen the answer 1",
-      "You have choosen the answer 2",
-      "You have choosen the answer 3"
-    ];
-    
-  void answerQuestion() {
+class _MyAppState extends State<MyApp> {
+  var _questionIndex = 0;
+
+  var questions = [
+    "what's your favorite color",
+    "what's your favorite city",
+    "what's your favorite car"
+  ];
+
+  void _answerQuestion() {
     setState(() {
-      questionIndex = questionIndex + 1;
+      _questionIndex = _questionIndex + 1;
     });
-    
-    print(questionIndex);
+
+    print(_questionIndex);
   }
-   
 
   @override
   Widget build(BuildContext context) {
@@ -44,21 +46,12 @@ class MyAppState extends State<MyApp> {
           ),
           body: Column(
             children: <Widget>[
-              Text(
-                questions[questionIndex],
+              Question(
+                questions[_questionIndex],
               ),
-              RaisedButton(
-                child: Text("Answer 1"),
-                onPressed: answerQuestion,
-              ),
-              RaisedButton(
-                child: Text("Answer 2"),
-                onPressed: answerQuestion,
-              ),
-              RaisedButton(
-                child: Text("Answer 3"),
-                onPressed: answerQuestion,
-              ),
+              Answer(_answerQuestion),
+              Answer(_answerQuestion),
+              Answer(_answerQuestion),
             ],
           )),
     );
