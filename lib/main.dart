@@ -4,22 +4,39 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return MyAppState();
+  }
+}
+
+class MyAppState extends State<MyApp> {
   var questionIndex = 0;
   
-
-  void answerQuestion() {
-    questionIndex =questionIndex + 1;
-    print(questionIndex);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    var questions = [
+   var questions = [
       "You have choosen the answer 1",
       "You have choosen the answer 2",
       "You have choosen the answer 3"
     ];
+    
+  void answerQuestion() {
+    setState(() {
+      questionIndex = questionIndex + 1;
+    });
+    
+    print(questionIndex);
+  }
+   
+
+  @override
+  Widget build(BuildContext context) {
+    // var questions = [
+    //   "You have choosen the answer 1",
+    //   "You have choosen the answer 2",
+    //   "You have choosen the answer 3"
+    // ];
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
