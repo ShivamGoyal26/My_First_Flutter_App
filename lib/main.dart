@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/answer.dart';
+// import 'package:flutter_complete_guide/answer.dart';
 import './question.dart';
-import './question.dart';
+import './answer.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,20 +18,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
 
-  var questions = [
-    {
-      'questionText': "what's your favorite color",
-      'answers': ['black', 'red', 'blue'],
-    },
-    {
-      'questionText': "what's your favorite animal",
-      'answers': ['wolf', 'tiger', 'lion'],
-    },
-    {
-      'questionText': "what's your favorite car",
-      'answers': ['lamborgini', 'rolls royce', 'audi'],
-    },
-  ];
+  
 
   void _answerQuestion() {
     setState(() {
@@ -43,11 +30,22 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    // var questions = [
-    //   "You have choosen the answer 1",
-    //   "You have choosen the answer 2",
-    //   "You have choosen the answer 3"
-    // ];
+
+    const questions = [
+    {
+      'questionText': "what's your favorite color",
+      'answers': ['black', 'red', 'blue', 'hi'],
+    },
+    {
+      'questionText': "what's your favorite animal",
+      'answers': ['wolf', 'tiger', 'lion'],
+    },
+    {
+      'questionText': "what's your favorite car",
+      'answers': ['lamborgini', 'rolls royce', 'audi'],
+    },
+  ];
+    
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
@@ -66,27 +64,25 @@ class _MyAppState extends State<MyApp> {
               // here column takes the list of widgets but here we have the list of list means nested list
               // here we use ... operator here this operator takes a list and they put all the values in the list out of it  and add them to the sourrouding list which is chlidren in this case as a individual value
               // so here technically we dont add the list to list mean children is a list right and we have also a list given below so thats why ... makes the list into the numbers
-                // in short here it will return the widget Answer right but as we discussed that map() function don't return the widgets but it returns iterations right but we want the list of the widgets so we used tolist() function to convert the iterations in to the list of widgets means at last we have the list of widgets now at the top we have the children which is supposed to get the widgets or the values not the list of widgets so that's why we used ... operation to get every widgets from the list of widgets return by map() function and add each widget in the children list now its alright 
+              // in short here it will return the widget Answer right but as we discussed that map() function don't return the widgets but it returns iterations right but we want the list of the widgets so we used tolist() function to convert the iterations in to the list of widgets means at last we have the list of widgets now at the top we have the children which is supposed to get the widgets or the values not the list of widgets so that's why we used ... operation to get every widgets from the list of widgets return by map() function and add each widget in the children list now its alright
 
               ...(questions[_questionIndex]['answers'] as List<String>)
                   .map((answer) {
                 return Answer(_answerQuestion, answer);
               }).toList()
-             
-              // see map() will return this kind of struture to you given below 
-              // [ 
+
+              // see map() will return this kind of struture to you given below
+              // [
               //   if _questionIndex = 0
               //   Answer(_answerQuestion, "black");
               //   Answer(_answerQuestion, "red");
               //   Answer(_answerQuestion, "blue");
               // ]
 
-              // now ... this operator removes the list like 
+              // now ... this operator removes the list like
               //   Answer(_answerQuestion, "black");
               //   Answer(_answerQuestion, "red");
               //   Answer(_answerQuestion, "blue");
-
-
             ],
           )),
     );
