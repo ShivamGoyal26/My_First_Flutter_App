@@ -16,23 +16,52 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
+  var _totalScore = 0;
 
-  final questions = const [
+  // final questions = const [
+  //   {
+  //     'questionText': "what's your favorite color",
+  //     'answers': ['black', 'red', 'blue', 'hi'],
+  //   },
+  //   {
+  //     'questionText': "what's your favorite animal",
+  //     'answers': ['wolf', 'tiger', 'lion'],
+  //   },
+  //   {
+  //     'questionText': "what's your favorite car",
+  //     'answers': ['lamborgini', 'rolls royce', 'audi'],
+  //   },
+  // ];
+  final _questions = const [
     {
       'questionText': "what's your favorite color",
-      'answers': ['black', 'red', 'blue', 'hi'],
+      'answers': [
+        {'text': 'Black', 'score': 10},
+        {'text': 'Red', 'score': 5},
+        {'text': 'Blue', 'score': 0}
+      ],
     },
     {
       'questionText': "what's your favorite animal",
-      'answers': ['wolf', 'tiger', 'lion'],
+      'answers': [
+        {'text': 'Wolf', 'score': 10},
+        {'text': 'Tiger', 'score': 5},
+        {'text': 'Lion', 'score': 0}
+      ],
     },
     {
       'questionText': "what's your favorite car",
-      'answers': ['lamborgini', 'rolls royce', 'audi'],
+      'answers': [
+        {'text': 'Lamborghini', 'score': 10},
+        {'text': 'Audi', 'score': 5},
+        {'text': 'Bmw', 'score': 0}
+      ],
     },
   ];
 
-  void _answerQuestion() {
+  void _answerQuestion(int score) {
+    _totalScore = _totalScore + score;
+
     setState(() {
       _questionIndex = _questionIndex + 1;
     });
@@ -46,21 +75,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    const _questions = [
-      {
-        'questionText': "what's your favorite color",
-        'answers': ['black', 'red', 'blue', 'hi'],
-      },
-      {
-        'questionText': "what's your favorite animal",
-        'answers': ['wolf', 'tiger', 'lion'],
-      },
-      {
-        'questionText': "what's your favorite car",
-        'answers': ['lamborgini', 'rolls royce', 'audi'],
-      },
-    ];
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -74,7 +88,7 @@ class _MyAppState extends State<MyApp> {
                 questionIndex: _questionIndex,
                 questions: _questions,
               )
-            : Result(),
+            : Result(_totalScore),
       ),
     );
   }

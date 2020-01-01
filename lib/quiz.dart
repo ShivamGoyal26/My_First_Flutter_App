@@ -31,8 +31,19 @@ class Quiz extends StatelessWidget {
         // so here technically we dont add the list to list mean children is a list right and we have also a list given below so thats why ... makes the list into the numbers
         // in short here it will return the widget Answer right but as we discussed that map() function don't return the widgets but it returns iterations right but we want the list of the widgets so we used tolist() function to convert the iterations in to the list of widgets means at last we have the list of widgets now at the top we have the children which is supposed to get the widgets or the values not the list of widgets so that's why we used ... operation to get every widgets from the list of widgets return by map() function and add each widget in the children list now its alright
 
-        ...(questions[questionIndex]['answers'] as List<String>).map((answer) {
-          return Answer(answerQuestion, answer);
+        ...(questions[questionIndex]['answers'] as List<Map<String, Object>>).map((answer) {
+          return Answer(() => answerQuestion(answer['score']), answer['text']);
+          // here the problem is now we can pass the answerQuestion as it is as we know now it accepts
+          // the arguments but we know we can not pass the function with the arguments as we know 
+          // that the answerQuestion function likned with the onpressed event which accepts the 
+          // functions with out the arguments right see in 
+          // answer.dart file the varibale does not accepts the arguments so here we have created a 
+          // anonymous function to by pass whole condition now with this we are just passing the 
+          // function as we normally does and without the arguments 
+          // now here what excatly happening with the anonymus function right ?
+          // now it is an anonymous function where i forwarded the address of the answerQuestion address and 
+          // bound to the button so when the button pressed addess is being used to excuted the anonymous function
+          // eventually our answerQuestion function 
         }).toList()
 
         // see map() will return this kind of struture to you given below
