@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class Result extends StatelessWidget {
   final int resultScore;
+  final Function resetHandler;
 
-  Result(this.resultScore);
+  Result(this.resultScore, this.resetHandler);
 
   String get resultPhrase {
     String resultText;
@@ -25,13 +26,22 @@ class Result extends StatelessWidget {
   // here resultPhrase is the name of the get Function
   // here get always return the value of its type
 
-  // if here you dont want to use the get function you can use the simple function also 
+  // if here you dont want to use the get function you can use the simple function also
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        resultPhrase,
-        style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+      child: Column(
+        children: <Widget>[
+          Text(
+            resultPhrase,
+            style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+          ),
+          RaisedButton(
+            child: Text("Restart Quiz!"),
+            textColor: Colors.blue,
+            onPressed: resetHandler,
+          )
+        ],
       ),
     );
   }

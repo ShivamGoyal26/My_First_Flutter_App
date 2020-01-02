@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import './quiz.dart';
 import './result.dart';
@@ -16,8 +18,14 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
-  var _totalScore = 0;
-
+  var _totalScore = 0; 
+  Void _resetQuiz() {
+    setState(() {
+      
+    });
+    _questionIndex = 0; // now here you can these two variables in the setstate also but mainly set state is used to call the build method in the code 
+    _totalScore = 0;
+  }
   // final questions = const [
   //   {
   //     'questionText': "what's your favorite color",
@@ -88,7 +96,8 @@ class _MyAppState extends State<MyApp> {
                 questionIndex: _questionIndex,
                 questions: _questions,
               )
-            : Result(_totalScore),
+            : Result(_totalScore, _resetQuiz, // here we are passing the pointer or the address of the function without adding (0
+            )
       ),
     );
   }
